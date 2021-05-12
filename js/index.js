@@ -1,47 +1,35 @@
 const news = $("#news");
 
 $.ajax({
+
   type: "GET",
-  url: "https://g1.globo.com/rss/g1/",
-  dataType: "xml",
-  success: function (xml) {
 
-    const items = $(xml).find("item");
+  url: "http://servicodados.ibge.gov.br/api/v3/noticias/?tipo=noticia&qtd=99",
 
-    items.each(function (index) {
+  dataType: "json",
 
-      function isMedia() {
-        return this.nodeName === "media:content";
-      }
+  success: function (json) {
 
-      const media = $(this).contents().filter(isMedia).attr("url");
+    console.log(json);
 
-      const title = $(this).find("title");
+    for (const item of json.items) {
 
-      const description = $(this).find("description");
+      const imagens = JSON.parse(item.imagens);
 
-      const link = $(this).find("link");
+      const card_img = `<img class="card-img" src="https://ibge.gov.br/${imagens.image_intro}">`;
 
-      function isCDATA() {
-        return this.nodeName === "#cdata-section";
-      }
-
-      description.contents().filter(isCDATA).remove();
-
-      const img = media ? `<img class="card-img-top" src="${media}">` : "";
-
-      const item = $.parseHTML(`
-        <div class="card my-3 bg-light">
-          ${img}
-          <div class="card-body text-justify">
-            <h5 class="card-title">${title.text()}</h5>
-            <p class="card-text">${description.text().slice(0, 200)}...</p>
-            <a href="${link.text()}" target="_blank" class="btn btn-outline-primary">Abrir em nova guia</a>
+      news.append(`
+        <div class="col-lg">
+          <div class="card my-3 bg-light shadow">
+            ${imagens.image_intro ? card_img : ""}
+            <div class="card-body text-justify">
+              <h5 class="card-title text-primary">${item.titulo}</h5>
+              <p class="card-text">${item.introducao}</p>
+              <a href="${item.link}" target="_blank" class="btn btn-outline-primary">Abrir em nova guia</a>
+            </div>
           </div>
         </div>
       `);
-
-      news.append(item);
-    });
+    }
   }
 });

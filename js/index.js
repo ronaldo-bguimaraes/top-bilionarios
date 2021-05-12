@@ -20,12 +20,12 @@ $.ajax({
 
       news.append(`
         <div class="col-lg">
-          <div class="card my-3 bg-light shadow">
+          <div class="card my-3 text-justify">
             ${imagens.image_intro ? card_img : ""}
-            <div class="card-body text-justify">
-              <h5 class="card-title text-primary">${item.titulo}</h5>
+            <div class="card-body">
+              <h5 class="card-title">${item.titulo}</h5>
               <p class="card-text">${item.introducao}</p>
-              <a href="${item.link}" target="_blank" class="btn btn-outline-primary">Abrir em nova guia</a>
+              <a href="${item.link}" target="_blank" class="btn btn-primary">Abrir em nova guia</a>
             </div>
           </div>
         </div>

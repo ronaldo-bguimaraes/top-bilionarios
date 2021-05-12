@@ -4,7 +4,7 @@ $.ajax({
 
   type: "GET",
 
-  url: "http://servicodados.ibge.gov.br/api/v3/noticias/?tipo=noticia&qtd=99",
+  url: "https://servicodados.ibge.gov.br/api/v3/noticias/?tipo=noticia&qtd=99",
 
   dataType: "json",
 

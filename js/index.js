@@ -13,7 +13,7 @@ function sucessJson(json) {
     const card_img = `<img class="card-img-top" src="https://ibge.gov.br/${imagens.image_intro}">`;
 
     $("#news").append(`
-      <div class="card mb-3 bg-light">
+      <div class="card my-3 bg-light">
         ${imagens.image_intro ? card_img : ""}
         <div class="card-body text-justify">
           <h5 class="card-title">${item.titulo}</h5>
@@ -30,4 +30,8 @@ function sucessJson(json) {
   }
 }
 
-fetch(url).then(e => e.json()).then(sucessJson);
+function start() {
+  fetch(url).then(e => e.json()).then(sucessJson);
+}
+
+setTimeout(start, 1000);

@@ -1,3 +1,3 @@
-## Top Billionaires
+## Top Bilionarios
 
-[Link para visualização](https://ronaldobg.github.io/billionaires/)
+[Link para visualização](https://ronaldobg.github.io/top-bilionarios/)
